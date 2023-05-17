@@ -1,0 +1,7 @@
+dotnet start
+dotnet ef migrations add SomeName -o file/location
+ - migrations create table and columns base on entities created in DbSet in StoreContext.cs
+
+dotnet ef update
+dotnet ef database drop
+dotnet watch --no-hot-reload
