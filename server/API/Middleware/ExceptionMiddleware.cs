@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Middleware
 {
     //middleware is software that different applications use to communicate with each other
+    //middleware pipeline
+    //take some request, do some logic,  next take you to the next middleware, then after some more logic, generate a response
+    //the middleware called through next have the same logic
+
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
@@ -29,6 +33,7 @@ namespace API.Middleware
                 _logger.LogError(ex, ex.Message);
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = 500;
+
 
                 var response = new ProblemDetails
                 {

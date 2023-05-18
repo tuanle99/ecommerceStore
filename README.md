@@ -9,6 +9,7 @@ Front-end
 - - axios
 - - redux
 - - error handling (error page)
+- - react-toastify
 
 Back-end
 
