@@ -31,26 +31,6 @@ namespace API.Controllers
             return MapBasketDto(basket);
         }
 
-        private BasketDto MapBasketDto(Basket basket)
-        {
-            return new BasketDto
-            {
-                Id = basket.Id,
-                BuyerId = basket.BuyerId,
-                Items = basket.Items.Select(item => new BasketItemDto
-                {
-                    ProductId = item.ProductId,
-                    Name = item.Product.Name,
-                    Price = item.Product.Price,
-                    PictureUrl = item.Product.PictureUrl,
-                    Type = item.Product.Type,
-                    Brand = item.Product.Brand,
-                    Quantity = item.Quantity
-                }).ToList()
-            };
-        }
-
-
 
         [HttpPost]  //api/basket?productId=3&quantity=2
         public async Task<ActionResult<BasketDto>> AddItemToBasket(int productId, int quantity)
@@ -106,5 +86,24 @@ namespace API.Controllers
 
             return basket;
         }
+        private BasketDto MapBasketDto(Basket basket)
+        {
+            return new BasketDto
+            {
+                Id = basket.Id,
+                BuyerId = basket.BuyerId,
+                Items = basket.Items.Select(item => new BasketItemDto
+                {
+                    ProductId = item.ProductId,
+                    Name = item.Product.Name,
+                    Price = item.Product.Price,
+                    PictureUrl = item.Product.PictureUrl,
+                    Type = item.Product.Type,
+                    Brand = item.Product.Brand,
+                    Quantity = item.Quantity
+                }).ToList()
+            };
+        }
+
     }
 }
