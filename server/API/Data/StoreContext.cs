@@ -14,5 +14,7 @@ namespace API.Data
 
         public DbSet<Product> Products { get; set; }
         //create table in database of product
+
+        public DbSet<Basket> Baskets { get; set; }
     }
 }
