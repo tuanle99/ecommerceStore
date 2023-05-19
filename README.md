@@ -8,6 +8,9 @@ Front-end
 - - material ui
 - - axios
 - - redux
+- - redux toolkit
+- - redux devtools
+- - redux thunk
 - - error handling (error page)
 - - react-toastify
 
