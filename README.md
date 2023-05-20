@@ -19,3 +19,5 @@ Back-end
 - dotnet
 - - handling exception
 - - middleware
+- - sort, search, filter
+- - pagination

@@ -29,7 +29,6 @@ export default function Catalog() {
   const products = useAppSelector(productSelectors.selectAll);
   const {
     productsLoaded,
-    status,
     filtersLoaded,
     brands,
     types,
