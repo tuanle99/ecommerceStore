@@ -21,3 +21,9 @@ Back-end
 - - middleware
 - - sort, search, filter
 - - pagination
+
+setting up asp.net
+
+- asp.net identity - security
+- password hashing : browser -> identity -> database
+  jwt tokens
