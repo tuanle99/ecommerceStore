@@ -11,8 +11,6 @@ export default function AppPagination({ metaData, onPageChange }: Props) {
   const { pageSize, currentPage, totalCount, totalPages } = metaData;
   const [pageNumber, setPageNumber] = useState(currentPage);
 
-  console.log(metaData);
-
   function handlePageChange(page: number) {
     setPageNumber(page);
     onPageChange(page);
