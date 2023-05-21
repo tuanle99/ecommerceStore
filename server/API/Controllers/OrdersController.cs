@@ -1,6 +1,6 @@
 using API.Data;
 using API.DTOs;
-using API.Entities;
+
 using API.Entities.OrderAggregate;
 using API.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -20,14 +20,22 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Order>>> GetOrders()
+        public async Task<ActionResult<List<OrderDto>>> GetOrders()
         {
-            return await _context.Orders.Include(o => o.OrderItems).Where(x => x.BuyerId == User.Identity.Name).ToListAsync();
+            var orders = await _context.Orders
+                .ProjectOrderToOrderDto()
+                .Where(x => x.BuyerId == User.Identity.Name)
+                .ToListAsync();
+
+            return orders;
         }
+
         [HttpGet("{id}", Name = "GetOrder")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public async Task<ActionResult<OrderDto>> GetOrder(int id)
         {
-            return await _context.Orders.Include(x => x.OrderItems).Where(x => x.BuyerId == User.Identity.Name && x.Id == id).FirstOrDefaultAsync();
+            return await _context.Orders
+                .ProjectOrderToOrderDto()
+                .FirstOrDefaultAsync(x => x.BuyerId == User.Identity.Name && x.Id == id);
         }
 
         [HttpPost]
@@ -72,7 +80,8 @@ namespace API.Controllers
                 BuyerId = User.Identity.Name,
                 ShippingAddress = orderDto.ShippingAddress,
                 Subtotal = subtotal,
-                DeliveryFee = deliveryFee
+                DeliveryFee = deliveryFee,
+                // PaymentIntentId = basket.PaymentIntentId
             };
 
             _context.Orders.Add(order);
@@ -102,7 +111,6 @@ namespace API.Controllers
             if (result) return CreatedAtRoute("GetOrder", new { id = order.Id }, order.Id);
 
             return BadRequest("Problem creating order");
-
         }
     }
 }
