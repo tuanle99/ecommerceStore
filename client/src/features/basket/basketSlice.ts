@@ -14,19 +14,20 @@ const initialState: BasketState = {
 };
 
 export const fetchBasketAsync = createAsyncThunk<Basket>(
-  'basket/fetchBasketAsync',
+  "basket/fetchBasketAsync",
   async (_, thunkApi) => {
     try {
       return await agent.Basket.get();
     } catch (error: any) {
-      return thunkApi.rejectWithValue({error: error.data});
+      return thunkApi.rejectWithValue({ error: error.data });
     }
-  },{
+  },
+  {
     condition: () => {
-      if(!getCookie('buyerId')) return false
-    }
+      if (!getCookie("buyerId")) return false;
+    },
   }
-)
+);
 
 export const addBasketItemAsync = createAsyncThunk<
   Basket,
@@ -62,7 +63,7 @@ export const basketSlice = createSlice({
     },
     clearBasket: (state) => {
       state.basket = null;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addBasketItemAsync.pending, (state, action) => {
@@ -88,14 +89,20 @@ export const basketSlice = createSlice({
       console.log(action.payload);
       state.status = "idle";
     });
-    builder.addMatcher(isAnyOf(addBasketItemAsync.fulfilled, fetchBasketAsync.fulfilled), (state, action) => {
-      state.basket = action.payload;
-      state.status = "idle";
-    });
-    builder.addMatcher(isAnyOf(addBasketItemAsync.rejected, fetchBasketAsync.rejected), (state, action) => {
-      console.log(action.payload);
-      state.status = "idle";
-    });
+    builder.addMatcher(
+      isAnyOf(addBasketItemAsync.fulfilled, fetchBasketAsync.fulfilled),
+      (state, action) => {
+        state.basket = action.payload;
+        state.status = "idle";
+      }
+    );
+    builder.addMatcher(
+      isAnyOf(addBasketItemAsync.rejected, fetchBasketAsync.rejected),
+      (state, action) => {
+        console.log(action.payload);
+        state.status = "idle";
+      }
+    );
   },
 });
 

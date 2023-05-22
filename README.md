@@ -1,17 +1,20 @@
 # ecommerceStore
 
-This project mimics a shopping website that allow user to buy the items that they want.
+This project mimics a shopping website that allow users/customers to buy the items that they want.
 
 Front-end
 
 - ReactJS
 - React Router Dom
-- Material UI - CSS Framework
+- Material UI (CSS Framework)
 - Axios
 - Redux
 - Redux Toolkit
-- React-toastify
+- React-toastify (Live Notification)
+- React Hook Form (Validation)
+- Yup (Schema Interface)
 - Stripe JS
+- TypeScript
 
 Back-end
 
