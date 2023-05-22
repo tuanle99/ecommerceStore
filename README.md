@@ -11,7 +11,7 @@ Front-end
 - Redux
 - Redux Toolkit
 - React-toastify
-- Stripe
+- Stripe JS
 
 Back-end
 
