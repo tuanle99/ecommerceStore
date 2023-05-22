@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -6,6 +6,7 @@
     <!-- when enable, allow a string to hold an additional value null, also required, need type? to make it optional -->
     <!-- When disable, make string type optional by default, rather than required-->
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>4f5ba1f3-1f62-4614-a6e5-b3b2e5f5a7d7</UserSecretsId>
   </PropertyGroup>
 
   <!-- packages/dependencies -->
