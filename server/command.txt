@@ -5,3 +5,10 @@ dotnet ef migrations add SomeName -o file/location
 dotnet ef update
 dotnet ef database drop
 dotnet watch --no-hot-reload
+
+stripe site - https://dashboard.stripe.com/test/payments/
+
+stripe key (exp after 90 days 5/21) - acct_1NAKdQGNeWPtcfPO
+
+stripe cli - stripe listen -f http://localhost:5000/api/payments/webhook -e charge.succeeded
+need to run this to check whether the payment received successful
